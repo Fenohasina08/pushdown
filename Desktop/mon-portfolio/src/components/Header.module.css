@@ -1,0 +1,80 @@
+/* Conteneur principal */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     
+    color: white;
+    padding: 15px 20px;
+    position: relative;
+}
+.header::after {
+    content: "";
+    position: absolute;
+    width: 300px;           /* Largeur du cercle */
+    height: 250px;          /* Hauteur du cercle */
+    background-color: #ff005a; /* Couleur du cercle */
+    border-radius: 50%;     /* Forme circulaire */
+    top: -7rem;             /* Distance par rapport au haut du header */
+    left: -4rem;             /* Place le cercle à gauche */
+    z-index: -1;            /* Le place en arrière-plan */
+  }
+  
+body {
+    background-color: black;
+    color: white;
+}
+/* Style du menu */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 5rem;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Icône burger */
+.burger {
+    display: none; /* Caché par défaut sur les grands écrans */
+    cursor: pointer;
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+    .burger {
+        display: block; /* Afficher l’icône sur mobile */
+    }
+
+    nav {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #333;
+        width: 100%;
+        display: none;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    nav.active {
+        display: block; /* Affiche le menu lorsqu'on clique */
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
