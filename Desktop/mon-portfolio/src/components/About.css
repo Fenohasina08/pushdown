@@ -1,4 +1,4 @@
-.about {
+#about {
     display: flex;
     align-items: center; /* Centre verticalement */
     justify-content: center; /* Centre horizontalement */
@@ -8,8 +8,11 @@
     width: 100vw;
     height: 100vh;
     position: relative; /* Ajouté pour éviter les problèmes de positionnement */
+     
 }
-
+.about-left h2 {
+    font-size: 3.2rem;
+}
 .about-left, .about-right {
     flex: 1; /* Les deux parties prennent un espace égal */
     display: flex;

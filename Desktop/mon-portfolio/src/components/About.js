@@ -4,12 +4,10 @@ import imageFenohasina from '../Photos/Fenohasina-removebg-preview.png';
 
 function About() {
   return (
-    <section className="about">
+    <section id="about">
       <div className="about-left">
-        <h2>A propos de moi</h2>
-        <p>
-          Je suis un développeur passionné par la création d'interfaces modernes et dynamiques...
-        </p>
+        <h2>RA-FANOMEZANA Herimamy Fenohasina</h2>
+        
       </div>
       <div className="about-right">
         <img src={imageFenohasina} alt="A propos de moi" />

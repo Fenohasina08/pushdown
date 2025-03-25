@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi"; // Icônes de menu
-import styles from "./Header.module.css";
-import { motion } from "framer-motion"
+import styles from "./Header.module.css"; // Assure-toi que tu appliques les bons styles CSS
+import { motion } from "framer-motion";
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -24,12 +24,10 @@ function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    
-                    <li><a href="./About.js">About me</a></li>
-                    <li><a href="./Projects.js">Projects</a></li>
-                    <li><a href="./Technologies.js">Technologies</a></li>
-                    <li><a href="./Contact.js">Contact</a></li>
-                   
+                    <li><a href="#about" className={styles.navLink}>About me</a></li>
+                    <li><a href="#projects" className={styles.navLink}>Projects</a></li>
+                    <li><a href="#technologies" className={styles.navLink}>Technologies</a></li>
+                    <li><a href="#contact" className={styles.navLink}>Contact</a></li>
                 </motion.ul>
             </nav>
             

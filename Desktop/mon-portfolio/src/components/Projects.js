@@ -1,6 +1,6 @@
 // src/components/Projects.js
 import React from 'react';
-
+import './Projects.css';
 function Projects() {
     return (
         <section id="projects">
@@ -12,6 +12,14 @@ function Projects() {
                 </div>
                 <div className="project">
                     <h3>Projet 2</h3>
+                    <p>Description du projet 2</p>
+                </div>
+                <div className="project">
+                    <h3>Projet 3</h3>
+                    <p>Description du projet 2</p>
+                </div>
+                <div className="project">
+                    <h3>Projet 4</h3>
                     <p>Description du projet 2</p>
                 </div>
             </div>

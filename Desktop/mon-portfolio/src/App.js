@@ -12,10 +12,10 @@ function App() {
     window.particlesJS('particles-js', {
       particles: {
         number: {
-          value: 100, // Nombre de particules
+          value: 70, // Nombre de particules
         },
         size: {
-          value: 5, // Taille des particules
+          value: 1.5, // Taille des particules
         },
         color: {
           value: ['#5b9bd5', '#00b8a9', '#f7e53c'], // Trois couleurs harmonieuses

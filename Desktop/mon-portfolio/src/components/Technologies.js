@@ -1,6 +1,5 @@
 // src/components/Technologies.js
-import React from 'react';
-
+ 
 function Technologies() {
   return (
     <section>
