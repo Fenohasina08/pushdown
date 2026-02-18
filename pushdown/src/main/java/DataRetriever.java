@@ -65,4 +65,35 @@ public class DataRetriever {
         }
         return result;
     }
+
+    public InvoiceStatusTotals computeStatusTotals() {
+        String sql = """
+        SELECT 
+            SUM(CASE WHEN status = 'PAID' THEN quantity * unit_price ELSE 0 END) AS total_paid,
+            SUM(CASE WHEN status = 'CONFIRMED' THEN quantity * unit_price ELSE 0 END) AS total_confirmed,
+            SUM(CASE WHEN status = 'DRAFT' THEN quantity * unit_price ELSE 0 END) AS total_draft
+        FROM invoice
+        JOIN invoice_line ON invoice.id = invoice_line.invoice_id
+        """;
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                InvoiceStatusTotals totals = new InvoiceStatusTotals(
+                        rs.getDouble("total_paid"),
+                        rs.getDouble("total_confirmed"),
+                        rs.getDouble("total_draft")
+                );
+                return totals;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new InvoiceStatusTotals(0, 0, 0);
+    }
+
 }
+
+

@@ -1,24 +1,21 @@
-import java.math.BigDecimal;
-
 public class InvoiceStatusTotals {
-    private BigDecimal totalPaid;
-    private BigDecimal totalConfirmed;
-    private BigDecimal totalDraft;
+    private double totalPaid;
+    private double totalConfirmed;
+    private double totalDraft;
 
-    public InvoiceStatusTotals(BigDecimal totalPaid, BigDecimal totalConfirmed, BigDecimal totalDraft) {
+    public InvoiceStatusTotals(double totalPaid, double totalConfirmed, double totalDraft) {
         this.totalPaid = totalPaid;
         this.totalConfirmed = totalConfirmed;
         this.totalDraft = totalDraft;
     }
 
-    public BigDecimal getTotalPaid() { return totalPaid; }
-    public BigDecimal getTotalConfirmed() { return totalConfirmed; }
-    public BigDecimal getTotalDraft() { return totalDraft; }
+    public double getTotalPaid() { return totalPaid; }
+    public double getTotalConfirmed() { return totalConfirmed; }
+    public double getTotalDraft() { return totalDraft; }
 
     @Override
     public String toString() {
-        return "total_paid = " + totalPaid + "\n" +
-               "total_confirmed = " + totalConfirmed + "\n" +
-               "total_draft = " + totalDraft;
+        return String.format("total_paid = %.2f\ntotal_confirmed = %.2f\ntotal_draft = %.2f",
+                totalPaid, totalConfirmed, totalDraft);
     }
 }
