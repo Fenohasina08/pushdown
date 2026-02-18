@@ -2,28 +2,13 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        InvoiceDAO dao = new InvoiceDAO();
+        DataRetriever retriever = new DataRetriever();
+        List<InvoiceTotal> totals = retriever.findInvoiceTotals();
 
+        System.out.println("Q1 - Total par facture :");
+        totals.forEach(System.out::println);
 
-        List<InvoiceTotal> totals = dao.findInvoiceTotals();
-        System.out.println("findInvoiceTotals() :");
-        for (InvoiceTotal it : totals) {
-            System.out.println(it);
-        }
-
-
-        List<InvoiceTotal> confirmedPaid = dao.findConfirmedAndPaidInvoiceTotals();
-        System.out.println("\nfindConfirmedAndPaidInvoiceTotals() :");
-        for (InvoiceTotal it : confirmedPaid) {
-            System.out.println(it.getId() + " | " + it.getCustomerName() + " | " + it.getStatus() + " | " + it.getTotal());
-        }
-
-         InvoiceStatusTotals totalsByStatus = dao.computeStatusTotals();
-        System.out.println("\ncomputeStatusTotals() :");
-        System.out.println(totalsByStatus);
-
-        Double weighted = dao.computeWeightedTurnover();
-        System.out.println("\ncomputeWeightedTurnover() :");
-        System.out.printf("%.2f%n", weighted);
+        System.out.println("\n=== Q2 ===");
+        retriever.findConfirmedAndPaidInvoiceTotals().forEach(System.out::println);
     }
 }

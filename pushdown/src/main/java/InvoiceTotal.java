@@ -18,6 +18,6 @@ public class InvoiceTotal {
 
     @Override
     public String toString() {
-        return id + " | " + customerName + " | " + String.format("%.2f", amount);
+        return id + " | " + customerName + " | " + status + " | " + String.format("%.2f", amount);
     }
 }
