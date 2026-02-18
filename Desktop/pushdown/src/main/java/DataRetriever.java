@@ -8,7 +8,7 @@ public class DataRetriever {
     public List<InvoiceTotal> findInvoiceTotals () {
         List<InvoiceTotal> result = new ArrayList<>();
         string sql = """
-                      SELECT id, customer_name, status, SUM(quantity * unit_price) AS total
+                      SELECT id, customer_name, status, SUM(quantity * unit_price) AS total FROM invoice
                 """
     }
 }
