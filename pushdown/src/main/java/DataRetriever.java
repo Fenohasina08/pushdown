@@ -94,6 +94,31 @@ public class DataRetriever {
         return new InvoiceStatusTotals(0, 0, 0);
     }
 
+    public double computeWeightedTurnover() {
+        String sql = """
+        SELECT SUM(quantity * unit_price * 
+               CASE status 
+                   WHEN 'PAID' THEN 1.0 
+                   WHEN 'CONFIRMED' THEN 0.5 
+                   ELSE 0.0 
+               END) AS weighted_total
+        FROM invoice
+        JOIN invoice_line ON invoice.id = invoice_line.invoice_id
+        """;
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                return rs.getDouble("weighted_total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0.0;
+    }
+
 }
 
 

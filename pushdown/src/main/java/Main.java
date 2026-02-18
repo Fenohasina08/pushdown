@@ -11,5 +11,11 @@ public class Main {
          System.out.println("\n=== Q3 ===");
         InvoiceStatusTotals statusTotals = retriever.computeStatusTotals();
         System.out.println(statusTotals);
+
+        // Ajoute dans ton Main après Q3 :
+        System.out.println("\n=== Q4 ===");
+        double weighted = retriever.computeWeightedTurnover();
+        System.out.println("Chiffre d'affaires pondéré : " + weighted);
+
     }
 }
