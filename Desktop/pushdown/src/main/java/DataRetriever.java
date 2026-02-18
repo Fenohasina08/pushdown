@@ -7,8 +7,12 @@ public class DataRetriever {
 
     public List<InvoiceTotal> findInvoiceTotals () {
         List<InvoiceTotal> result = new ArrayList<>();
-        string sql = """
+        String sql = """
                       SELECT id, customer_name, status, SUM(quantity * unit_price) AS total FROM invoice
+                                  JOIN invoice_line ON invoice.id = invoice_line.invoice_id
+                                        GROUP BY id, customer_name, status
+                                                ORDER BY id
+                
                 """
     }
 }
