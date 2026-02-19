@@ -16,3 +16,4 @@ CREATE TABLE invoice_line (
     quantity INT NOT NULL,
     unit_price NUMERIC(10,2) NOT NULL
 );
+//sum case when
