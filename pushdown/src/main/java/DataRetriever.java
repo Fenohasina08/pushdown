@@ -119,6 +119,39 @@ public class DataRetriever {
         return 0.0;
     }
 
+    public List<InvoiceTaxSummary> findInvoiceTaxSummaries() {
+        List<InvoiceTaxSummary> result = new ArrayList<>();
+        String sql = """
+        SELECT invoice.id,
+               SUM(quantity * unit_price) AS ht,
+               SUM(quantity * unit_price) * tax_config.rate AS tva,
+               SUM(quantity * unit_price) * (1 + tax_config.rate) AS ttc
+        FROM invoice
+        JOIN invoice_line ON invoice.id = invoice_line.invoice_id
+        CROSS JOIN tax_config WHERE tax_config.label = 'TVA STANDARD'
+        GROUP BY invoice.id, tax_config.rate
+        ORDER BY invoice.id
+        """;
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                InvoiceTaxSummary summary = new InvoiceTaxSummary(
+                        rs.getInt("id"),
+                        rs.getDouble("ht"),
+                        rs.getDouble("tva"),
+                        rs.getDouble("ttc")
+                );
+                result.add(summary);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }
 
 

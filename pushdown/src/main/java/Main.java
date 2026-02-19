@@ -16,5 +16,8 @@ public class Main {
         double weighted = retriever.computeWeightedTurnover();
         System.out.println("Chiffre d'affaires pondéré : " + weighted);
 
+        System.out.println("\n=== Q5-A ===");
+        retriever.findInvoiceTaxSummaries().forEach(System.out::println);
+
     }
 }
