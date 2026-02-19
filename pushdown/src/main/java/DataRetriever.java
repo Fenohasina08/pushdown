@@ -152,6 +152,33 @@ public class DataRetriever {
         return result;
     }
 
+    public double computeWeightedTurnoverTtc() {
+        String sql = """
+        SELECT COALESCE(SUM(quantity * unit_price * (1 + tax_config.rate) *
+               CASE invoice.status 
+                   WHEN 'PAID' THEN 1.0 
+                   WHEN 'CONFIRMED' THEN 0.5 
+                   ELSE 0.0 
+               END), 0) AS weighted_ttc
+        FROM invoice
+        JOIN invoice_line ON invoice.id = invoice_line.invoice_id
+        CROSS JOIN tax_config
+        WHERE tax_config.label = 'TVA STANDARD'
+        """;
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                return rs.getDouble("weighted_ttc");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0.0;
+    }
+
 }
 
 

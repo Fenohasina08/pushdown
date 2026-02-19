@@ -19,5 +19,9 @@ public class Main {
         System.out.println("\n=== Q5-A ===");
         retriever.findInvoiceTaxSummaries().forEach(System.out::println);
 
+        System.out.println("\n=== Q5-B ===");
+        double weightedTtc = retriever.computeWeightedTurnoverTtc();
+        System.out.println("Chiffre d'affaires TTC pondéré : " + weightedTtc);
+
     }
 }
